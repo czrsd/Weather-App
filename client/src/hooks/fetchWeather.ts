@@ -7,7 +7,8 @@ const fetchWeather = async () => {
   const inputElement = document.querySelector<HTMLInputElement>("[data-id='query']");
   const weatherDataElement = document.querySelector<HTMLInputElement>("[data-id='weatherData']");
   const query = inputElement?.value;
-
+  if (weatherDataElement)
+    weatherDataElement.innerHTML = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
   if (query) {
     try {
       const response = await axios.post("http://localhost:3000/getWeather", {

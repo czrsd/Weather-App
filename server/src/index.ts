@@ -1,31 +1,35 @@
-import express from 'express';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import compression from 'compression';
-import cors from 'cors';
-import weatherRouter from './routes/get.js';
-import "./helpers/env.js"
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import compression from "compression";
+import cors from "cors";
+import weatherRouter from "./routes/get.js";
+import citiesRouter from "./routes/cities.js";
+import "./helpers/env.js";
 
 const app = express();
 
 app.use(helmet());
-app.use(morgan('combined'));
+app.use(morgan("combined"));
 app.use(compression());
-app.use(cors({
+app.use(
+  cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin || origin.startsWith('http://localhost')) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-    }
-}));
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin || origin.startsWith("http://localhost")) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(weatherRouter);
+app.use(citiesRouter);
 
 const PORT = process.env.PORT || 3000;
 

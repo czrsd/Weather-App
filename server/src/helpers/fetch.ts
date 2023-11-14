@@ -5,8 +5,9 @@ interface FetchOptions {
   onError?: (error: AxiosError) => void;
 }
 
-function fetch(url: string, options?: FetchOptions) {
-  return axios.get(url)
+async function fetch(url: string, options?: FetchOptions) {
+  return axios
+    .get(url)
     .then((response: AxiosResponse<any>) => {
       if (options?.onSuccess) {
         options.onSuccess(response.data);
