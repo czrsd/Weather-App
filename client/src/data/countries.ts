@@ -1,13 +1,10 @@
 const countries = {
   AF: "Afghanistan",
-  AX: "Aland Islands",
   AL: "Albania",
   DZ: "Algeria",
   AS: "American Samoa",
   AD: "Andorra",
   AO: "Angola",
-  AI: "Anguilla",
-  AQ: "Antarctica",
   AR: "Argentina",
   AM: "Armenia",
   AU: "Australia",

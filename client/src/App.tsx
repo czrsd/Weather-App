@@ -7,8 +7,16 @@ import countryList from "./hooks/countryList";
 
 const keyDownEvent = (event: any) => {
   if (event.key === "Enter") {
-    fetchWeather();
+    fetchWeather("");
   }
+};
+
+const onfetchWeatherClick = () => {
+  fetchWeather("");
+}
+
+const toggleDropdown = () => {
+  countryList.toggle();
 };
 
 const searchCountry = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -32,7 +40,7 @@ function App() {
             placeholder="Search City or Country"
             onKeyDown={keyDownEvent}
           />
-          <button className="bg-transparent border-none" onClick={fetchWeather}>
+          <button className="bg-transparent border-none" onClick={onfetchWeatherClick}>
             <img src={search} alt="Search Icon" draggable={false} />
           </button>
         </div>
@@ -42,7 +50,7 @@ function App() {
           <button
             className="bg-slate-100 text-stone-900 font-semibold rounded-full p-3 w-full flex justify-between items-center"
             data-id="btn_countries"
-            onClick={countryList.eventListener}>
+            onClick={toggleDropdown}>
             Countries
             <svg
               xmlns="http://www.w3.org/2000/svg"

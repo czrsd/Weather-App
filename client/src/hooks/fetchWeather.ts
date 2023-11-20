@@ -3,10 +3,11 @@ interface WeatherData {
   query: string;
 }
 
-const fetchWeather = async () => {
+const fetchWeather = async (country: string) => {
   const inputElement = document.querySelector<HTMLInputElement>("[data-id='query']");
   const weatherDataElement = document.querySelector<HTMLInputElement>("[data-id='weatherData']");
-  const query = inputElement?.value;
+  if (!inputElement) return;
+  const query = country.length >= 1 ? country : inputElement?.value;
   if (weatherDataElement)
     weatherDataElement.innerHTML = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
   if (query) {
